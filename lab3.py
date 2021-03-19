@@ -73,11 +73,11 @@ print(ciag(1, 1, 4, 10))       #1 el na liscie, a, b, ile
 
 #Zad8 - funkcja z operatorem **
 def list(**items):
-    product_list = {'czekolada': 2.5, 'cukierki': 3, 'pączek': 1.5, 'mleko': 4, 'chleb': 3.5}
     items = len(product_list.keys())
     price = sum(product_list.values())
     return items, price
 print('Zad8')
+product_list = {'czekolada': 2.5, 'cukierki': 3, 'pączek': 1.5, 'mleko': 4, 'chleb': 3.5}
 print(list())
 
 #DZIALAJACY JAKO "NIE FUNKCJA"
