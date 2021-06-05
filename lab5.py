@@ -1,3 +1,5 @@
+#Marcin Polkowski
+#Zadania lab5
 import numpy as np
 
 #Zad1 Utwórz dwie macierze 1x3 różnych wartości a następnie wykonaj operację mnożenia.
@@ -61,11 +63,17 @@ print("Dodawanie macierzy z zad 5 i 6:\n", np.add(a,b))
 
 #Zad8 Wygeneruj macierz 3x3 i wyświetl w pętli każdy z rzędów.
 print("\nZad8")
+macierz = np.random.randint(10, size=(3, 3))
+
+for i in range(macierz.shape[0]):
+    print("Wiersz {} : {}".format(i+1, macierz[i]))
 
 
 #Zad9 Wygeneruj macierz 3x3 i wyświetl w pętli każdy element korzystając z opcji “spłaszczenia” macierzy. (użyj funkcji flat())
 print("\nZad9")
-
+macierz = np.random.randint(10, size=(3, 3))
+for i in macierz.flat:
+    print(i)
 
 #Zad10 Wygeneruj macierz 9x9 a następnie zmień jej kształt. Jakie mamy możliwości i dlaczego?
 print("\nZad10")
@@ -83,3 +91,22 @@ print("Macierz w formacie 81x1:\n", a)
 
 #Zad11 Wygeneruj macierz płaską (wektor) i przekształć ją na macierz 3x4. Wygeneruj w ten sposób jeszcze kombinacje 4x3 i 2x6. Spłaszcz każdą z nich i wyświetl wyniki. Czy są identyczne?
 print("\nZad11")
+macierz1 = np.random.randint(10, size=12)
+print('Macierz pierwotna:\n', macierz1)
+macierz1 = macierz1.reshape((3, 4))
+print('Macierz 3x4:\n' ,macierz1)
+print(u'Macierz 3x4 spłaszczona:\n' ,macierz1.reshape(12))
+print('\n')
+
+macierz2 = np.random.randint(10, size=12)
+print('Macierz pierwotna:\n', macierz2)
+macierz2 = macierz2.reshape((4, 3))
+print('Macierz 4x3:\n' ,macierz2)
+print(u'Macierz 4x3 spłaszczona:\n' ,macierz2.reshape(12))
+print('\n')
+
+macierz3 = np.random.randint(10, size=12)
+print('Macierz pierwotna:\n', macierz3)
+macierz3 = macierz3.reshape((2, 6))
+print('Macierz 2x6:\n' ,macierz3)
+print(u'Macierz 2x6 spłaszczona:\n' ,macierz3.reshape(12))

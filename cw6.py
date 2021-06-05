@@ -30,7 +30,7 @@ print(df)
 df.to_csv('zapis_dane.csv', index=False)     #zapis do pliku
 
 import xlrd
-import openpyxl
+import openpyxla
 
 # #COŚ TU NIE DZIAŁA, DO PÓŹNIEJSZEGO SPRAWDZENIA
 #ODCZYT PLIKU XLSX

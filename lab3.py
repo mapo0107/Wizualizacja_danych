@@ -28,8 +28,54 @@ print('Wszystkie produkty:', product_list1)
 print('Produkty których wartości to sztuki: ',product_list2)
 
 #Zad4 - funkcja sprawdzajaca czy trojkat jest prostokatny
+print('Zad4')
+def trojkat(a, b, c):
+    bok = [float(a), float(b), float(c)]
+    bok.sort()
+    for x in bok:
+        if x < 0:
+            print(u'Wprowadzono błędne dane')
+            return 0
+    if bok[2]**2 == bok[1]**2 + bok[0]**2:
+        print(u'Trójkąt jest prostokątny')
+    else:
+        print(u'Trójkąt nie jest prostokątny')
+    return 1
 
-#Zad5 - liczneie pola trapezu
+print(u"Podaj długości boków trójkąta:\n")
+a = input("A: ")
+b = input("B: ")
+c = input("C: ")
+trojkat(a, b, c)
+
+#Notatki pomocnicze :)
+# bok = [int(3), int(1), int(2)]
+# print(bok)
+# bok.sort()
+# print(bok)
+# print(bok[0])
+# print(bok[1])
+# print(bok[2])
+
+#Zad5 - liczneie pola trapezu // (1/2) * (a+b) * h
+print('Zad5')
+def trapez(a, b, h):
+    wymiar = [float(a), float(b), float(h)]
+    for x in wymiar:
+        if x <= 0:
+            print(u'Wprowadzono błędne dane')
+            return 0
+    a = float(a)
+    b = float(b)
+    h = float(h)
+    pole = (a + b) * h * 0.5
+    print(pole)
+
+print(u"Podaj wymiary trapezu:\n")
+a = input("A: ")
+b = input("B: ")
+h = input("H: ")
+trapez(a, b, h)
 
 
 #Zad6 - iloczyn elementow ciagu
@@ -87,9 +133,14 @@ print(total_price)
 
 
 #Zad9 - ciagki arytmetyczne i geometryczne
+#Stwórz pakiet ciągi. Jeden moduł niech dotyczy działań i wzorów związanych z ciągami arytmetycznymi a drugi niech dotyczy działań i wzorów związanych z ciągami geometrycznymi.
+print('Zad9')
+
+
 
 
 #Zad10 - liczby podzielne przez 4, zapisane do pliku
+print('Zad10 - zapisuje dane do pliku')
 from random import *
 
 list = []
@@ -105,6 +156,7 @@ for number in list:
 file.close()
 
 #Zad11 - odczyt pliku i wyswietlenie zawartosci w konsoli
+print('Zad11')
 file = open('lab3.txt', 'r')
 list = file.readlines()
 for number in list:

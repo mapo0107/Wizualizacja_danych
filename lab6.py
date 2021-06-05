@@ -1,3 +1,5 @@
+# Marcin Polkowski
+# Zadania lab6
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -5,7 +7,6 @@ import openpyxl
 import xlrd
 
 # Zadania do wykresów z Pandas
-
 # Zadanie 1
 # Stwórz wykres liniowy, który wyświetli liczbę urodzonych dzieci dla każdego roku.
 
@@ -85,7 +86,7 @@ plt.show()
 # gdzie wektor x to wartość ‘sepal length’ a y to ‘sepal width’, dodaj paletę kolorów c na przykładzie listingu 6
 # a parametr s niech będzie wartością absolutną z różnicy wartości poszczególnych elementów wektorów x oraz y.
 
-data = pd.read_csv('iris.data', sep=',', decimal='.', header=None)
+data = pd.read_csv('iris.csv', sep=',', decimal='.', header=0)
 print(data)
 
 # cos tu niestety nie dziala i nie mam pomyslu jak to rozwiazac
@@ -111,24 +112,41 @@ data = pd.read_excel(imiona, header=0)
 # 1 wykres – wykres słupkowy przedstawiający ilość narodzonych dziewczynek i chłopców w całym okresie.
 
 plt.subplot(1, 3, 1)
-slupkowy = data.groupby('Plec').agg({'Liczba': 'sum'}).unstack()
+slupkowy = data.groupby('Plec').Liczba.sum()
 slupkowy.plot.bar()
-plt.xlabel('Płeć')
+plt.title(u'Liczna narodzin w całym okresie', fontsize=10)
+plt.xlabel('Płeć', fontsize=10)
+plt.ylabel(u'Ilość narodzin', fontsize=10)
 
 # 2 wykres – wykres liniowy, gdzie będą dwie linie, jedna dla ilości urodzonych kobiet, druga dla mężczyzn dla każdego roku z osobna.
 # Czyli y to ilość narodzonych kobiet lub mężczyzn (dwie linie), x to rok.
 
 plt.subplot(1, 3, 2)
-
-
+female = data[data.Plec == 'K'].groupby('Rok').sum()
+male = data[data.Plec == 'M'].groupby('Rok').sum()
+plt.plot(male, label=u'Mężczyźni')
+plt.plot(female, label='Kobiety')
+plt.title(u'Liczba narodzin wg płci', fontsize=10)
+plt.xlabel('Rok', fontsize=10)
+plt.ylabel(u'Ilość narodzin', fontsize=10)
 
 # 3 wykres – wykres słupkowy przedstawiający sumę urodzonych dzieci w każdym roku.
 
 plt.subplot(1, 3, 3)
-
+slupkowy2 = data.groupby('Rok').Liczba.sum()
+slupkowy2.plot.bar()
+plt.title(u'Ilość narodzin wg roku', fontsize=10)
+plt.xlabel('Rok', fontsize=10)
+plt.ylabel(u'Ilość narodzin', fontsize=10)
 
 plt.show()
 
 # Zadanie 6
 # Korzystając z pliku zamówienia.csv (Pandas) policz sumy zamówień dla każdego przedawcy i wyświetl wykres kołowy z procentowym udziałem każdego sprzedawcy w ogólnej sumie zamówień.
 # Poszukaj w Internecie jak dodać cień do takiego wykresu i jak działa atrybut ‘explode’ tego wykresu. Przetestuj ten atrybut na wykresie.
+
+data = pd.read_csv('pandas_zamowienia.csv', header=0, sep=";", decimal='.', parse_dates=['Data zamowienia'])
+seller = data.groupby('Sprzedawca').Utarg.sum()         #liczymy sume zamowuen grupowane wg sprzedawcy
+kolowy = seller.plot.pie(subplots=True, autopct='%.2f%%', fontsize=14, figsize=(6, 6), startangle=90, shadow=True, explode=(seller == max(seller)) * 0.2 )  #explode i shadow
+plt.title(u'Procentowy udział w sprzedarzy', fontsize=20)
+plt.show()

@@ -1,3 +1,5 @@
+#Marcin Polkowski
+#Zadania lab_pandas
 import pandas as pd
 
 import xlrd
@@ -39,11 +41,19 @@ print('W latach 2000-2005 urodziło się %d dzieci' % babyBorn_2000_2005)
 #sumę urodzonych chłopców i dziewczynek,
 M = df[(df.Plec == 'M')].sum().Liczba
 K = df[(df.Plec == 'K')].sum().Liczba
-print('Urodziło się %d chłopców i %d dziwcząt' % (M, K))
-
+print('Urodziło się %d chłopców i %d dziewcząt' % (M, K))
 
 #najbardziej popularne imię dziewczynki i chłopca w danym roku ( czyli po 2 rekordy na rok),
+M = df[(df.Plec == 'M')]
+K = df[(df.Plec == 'K')]
 
-
+M_rok = M.groupby('Rok') # w tym konkretnie przypadku nie ma sansu grupowac, poniewaz w importowanym plik jest to juz pogrupowane wedglug rocznika, ale w inne sytuacji warto z tej funkjci skorzystac
+K_rok = K.groupby('Rok')
+print(M)
+print(M_rok)
 
 #najbardziej popularne imię dziewczynki i chłopca w całym danym okresie,
+female = df[(df.Plec == 'K')].groupby('Imie').Liczba.sum().sort_values()[-1:]
+male = df[(df.Plec == 'M')].groupby('Imie').Liczba.sum().sort_values()[-1:]
+print(female)
+print(male)
