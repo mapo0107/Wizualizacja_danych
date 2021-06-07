@@ -86,21 +86,13 @@ plt.show()
 # gdzie wektor x to wartość ‘sepal length’ a y to ‘sepal width’, dodaj paletę kolorów c na przykładzie listingu 6
 # a parametr s niech będzie wartością absolutną z różnicy wartości poszczególnych elementów wektorów x oraz y.
 
-data = pd.read_csv('iris.csv', sep=',', decimal='.', header=0)
-print(data)
-
-# cos tu niestety nie dziala i nie mam pomyslu jak to rozwiazac
-# data2 = {'c': np.random.randint(0, 8, 100)}
-# data2['a'] = data[0]
-# data2['b'] = data[1]
-# data2['d'] = np.abs([data[0] - data[1]])
-# df = pd.DataFrame(data2)
-# print(df)
-# plot = sns.relplot(data2=df, x="a", y="b", hue='c', palette='Set2',size="d", legend=True)
-# plot.fig.set_size_inches(7, 7)
-# plot.set(xlabel="os x", ylabel="os y", title="bla bla")
-# plt.show()
-
+data = pd.read_csv('iris.data', header=0, sep=",", decimal=".", usecols=['sepal length', 'sepal width'])
+data = {'a': data['sepal length'],
+        'b': data['sepal width'],
+        'c': np.random.randint(1, 10, len(data.index))}
+data['d'] = np.abs(data['a'] - data['b']) * 10
+plt.scatter('a', 'b', c='c', s='d', data=data)
+plt.show()
 
 # Zadanie 5
 # Korzystając z biblioteki pandas wczytaj zbiór danych z narodzinami dzieci przedstawiony w lekcji dotyczącej wprowadzenia do pandas.

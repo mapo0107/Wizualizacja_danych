@@ -134,10 +134,26 @@ print(total_price)
 
 #Zad9 - ciagki arytmetyczne i geometryczne
 #Stwórz pakiet ciągi. Jeden moduł niech dotyczy działań i wzorów związanych z ciągami arytmetycznymi a drugi niech dotyczy działań i wzorów związanych z ciągami geometrycznymi.
+
+from ciagi import *
 print('Zad9')
+#arytmetyczny
+print('Wygenerowany ciąg arytmetyczny 1')
+ciag_arytmetyczny.generuj_ciag(2, 22, 5)
+print('Wygenerowany ciąg arytmetyczny 2')
+ciag_arytmetyczny.generuj_ciag(98, 8, 15)
+print(u'Suma ciągu arytmetycznego')
+arytmetyczny = [11, 8, 5, 2, -1]
+print(ciag_arytmetyczny.suma(len(arytmetyczny), arytmetyczny[0], arytmetyczny[1] - arytmetyczny[0]))
 
-
-
+#geometryczny
+print('Wygenerowany ciąg geometryczny 1')
+ciag_geometryczny.generuj_ciag(2, 22, 5)
+print('Wygenerowany ciąg geometryczny 2')
+ciag_geometryczny.generuj_ciag(98, 8, 15)
+print(u'Suma ciągu geometrycznego')
+geometryczny = [11, 8, 5, 2, -1]
+print(ciag_geometryczny.suma(len(geometryczny), geometryczny[0], geometryczny[1] / geometryczny[0]))
 
 #Zad10 - liczby podzielne przez 4, zapisane do pliku
 print('Zad10 - zapisuje dane do pliku')

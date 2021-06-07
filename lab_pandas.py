@@ -57,3 +57,41 @@ female = df[(df.Plec == 'K')].groupby('Imie').Liczba.sum().sort_values()[-1:]
 male = df[(df.Plec == 'M')].groupby('Imie').Liczba.sum().sort_values()[-1:]
 print(female)
 print(male)
+
+# Zadanie 3
+# Wczytaj plik /datasets/zamowieniana.csv a następnie wyświetl:
+data = pd.read_csv('pandas_zamowienia.csv', header=0, sep=";", decimal='.')
+
+# listę unikalnych nazwisk sprzedawców (przetwarzając zwróconą pojedynczą kolumnę z DataFrame)
+print(data.Sprzedawca.unique())
+print('\n')
+
+# 5 najwyższych wartości zamówień
+print(data.sort_values(by='Utarg', ascending=False).head(5))
+print('\n')
+
+# ilość zamówień złożonych przez każdego sprzedawcę
+il_zamowien = data.groupby('Sprzedawca').size()
+print(il_zamowien)
+print('\n')
+
+# sumę zamówień dla każdego kraju
+suma_zamowien = data.groupby('Kraj').Utarg.sum()
+print(suma_zamowien)
+print('\n')
+
+# sumę zamówień dla roku 2005, dla sprzedawców z Polski
+suma_zamowien_2005 = data[((data['Kraj'] == 'Polska') & (data['Data zamowienia'] >= '2005-01-01') & (data['Data zamowienia'] <= '2005-12-31'))].Utarg.sum()
+print(suma_zamowien_2005)
+print('\n')
+
+# średnią kwotę zamówienia w 2004 roku,
+srednia_zamowien_2004 = data[(data['Data zamowienia'].str[:4] == '2004')].Utarg.mean()
+print(srednia_zamowien_2004)
+print('\n')
+
+# zapisz dane za 2004 rok do pliku zamówienia_2004.csv a dane za 2005 do pliku zamówienia_2005.csv
+zamówienia_2004 = data[((data['Data zamowienia'].str[:4] == '2004'))]
+zamówienia_2005 = data[((data[ 'Data zamowienia'].str[:4] == '2005'))]
+zamówienia_2004.to_csv('zamówienia_2004.csv', index=False)
+zamówienia_2005.to_csv('zamówienia_2005.csv', index=False)

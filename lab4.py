@@ -1,6 +1,8 @@
 #Marcin Polkowski
 #Zadania lab4
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 from math import *
 
 #Zad1 Tablica 15 wielokrotnosci liczby 3 - arange
@@ -86,7 +88,59 @@ print(macierz)
 # parametr kierunek określa czy tablica wejściowa będzie dzielona w pionie czy poziomie
 # funkcja dzieli tablicę wejściową na pół (napisz warunek, który wyświetli komunikat, że ilość wierszy lub kolumn, w zależności od kierunku podziału, nie pozwala na operację)
 print('Zad8')
+def kierunek(tablica, kierunek):
+    wiersze = tablica.shape[0]
+    kolumny = tablica.shape[1]
 
+    if kierunek == 'poziom':
+        # jezeli parzysta liczba wierszy to podziel tablice
+        if wiersze % 2 == 0:
+            print(u"Tablica dzieli się poziomo:")
+            temp1 = tablica[0:int(wiersze / 2)]
+            temp2 = tablica[int(wiersze / 2):, :]
+
+        # jezeli nie pozostaw tablice bez zmian i zwroc komunikat
+        else:
+            print(u"Tablica NIE dzieli się poziomo!")
+            return
+
+    elif kierunek == 'pion':
+        # jezeli parzysta liczba kolumn to podziel tablice
+        if kolumny % 2 == 0:
+            print(u"Tablica dzieli się pionowo:")
+            temp1 = tablica[:, 0:int(kolumny / 2)]
+            temp2 = tablica[:, int(kolumny / 2):]
+
+        # jezeli nie pozostaw tablice bez zmian i zwroc komunikat
+        else:
+            print(u"Tablica NIE dzieli się pionowo!")
+            return
+
+    else:
+        print("Nieznany argument, ustaw 'piono' lub 'poziom' ")
+        return
+
+    # wydruk podzielonych tablic
+    print(temp1)
+    print(temp2)
+#tablice testowe
+tab1 = np.arange(25).reshape((5,5))
+tab2 = np.arange(12).reshape((2,6))
+tab3 = np.arange(15).reshape((5,3))
+tab4 = np.arange(10).reshape((2,5))
+
+#sprawdzanie czy tablice sa podzielne w pionie i poziomie
+print('Tab1')
+kierunek(tab1, 'pion')
+kierunek(tab1, 'poziom')
+print('\nTab2')
+kierunek(tab2, 'pion')
+kierunek(tab2, 'poziom')
+print('\nTab3')
+kierunek(tab3, 'pion')
+kierunek(tab3, 'poziom')
+print('\nTab4')
+kierunek(tab4, 'zly_argument')
 
 # Zadanie 9
 # Wykorzystaj poznane na zajęciach funkcje biblioteki Numpy i stwórz macierz 5x5, która będzie zawierała kolejne wartości ciągu Fibonacciego.
